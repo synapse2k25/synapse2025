@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Synapse '25 — Sports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="nav-container">
+      <button class="nav-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html#home">HOME</a></li>
+        <li><a href="index.html#sponsors">Our Sponsors</a></li>
+        <li><a href="index.html#about-gvmc">About GVMC</a></li>
+        <li><a href="index.html#about-synapse">About Synapse</a></li>
+        <li><a href="index.html#instructions">General Instructions</a></li>
+		<li><a href="index.html#events">Our Events</a></li>
+        <li><a href="index.html#guests">Our Guests</a></li>	
+        <li><a href="index.html#advisors">Our Advisors</a></li>
+        <li><a href="index.html#student-council">Student Council</a></li>
+		<li><a href="index.html#paracouncil">Para Council</a></li>
+        <li><a href="index.html#gallery">Our Gallery</a></li>
+        <li><a href="index.html#other-sponsors">Other Sponsors</a></li>
+		<li><a href="index.html#accommodation">For Accommodation</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<section id="sports" class="our-events">
+  <h1 class="page-title shimmer">Synapse Sports Events 2025 — Sports</h1>
+
+  <!-- Category Page -->
+  <div id="categoryPage" class="events-grid-large">
+    <div class="event-card-large">
+      <div class="event-image" style="background-image:url('https://i.ibb.co/zTDhY9tZ/Whats-App-Image-2025-08-25-at-15-45-30-1.jpg');"></div>
+      <div class="event-info">
+        <h3 class="event-title">Outdoor Sports</h3>
+        <button class="btn" onclick="showCategory('outdoor')">Events</button>
+      </div>
+    </div>
+
+    <div class="event-card-large">
+      <div class="event-image" style="background-image:url('https://i.ibb.co/0y7j5HSt/Whats-App-Image-2025-08-25-at-15-45-30-2.jpg');"></div>
+      <div class="event-info">
+        <h3 class="event-title">Indoor Sports</h3>
+        <button class="btn" onclick="showCategory('indoor')">Events</button>
+      </div>
+    </div>
+
+    <div class="event-card-large">
+      <div class="event-image" style="background-image:url('https://i.ibb.co/rRMWNxMZ/Whats-App-Image-2025-08-25-at-15-45-58.jpg');"></div>
+      <div class="event-info">
+        <h3 class="event-title">Athletics</h3>
+        <button class="btn" onclick="showCategory('athletics')">Events</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Events Page -->
+  <div id="mainPage" style="display:none;">
+    <div id="eventGrid" class="events-grid-large"></div>
+    <div class="small-center">
+      <button class="btn" onclick="backToCategories()">⬅ Back to Categories</button>
+    </div>
+  </div>
+
+  <!-- Details Page -->
+  <div id="detailsPage" class="details-container"></div>
+</section>
+
+<script>
+const eventsData = {
+  outdoor: [
+    { 
+      name: "Cricket (Men)", 
+      img: "https://i.ibb.co/Kjnz4zKx/Whats-App-Image-2025-08-19-at-19-25-03.jpg", 
+      details: [
+        "Knockout format.",
+        "No. of overs depends upon entries.",
+        "All ICC rules applied. Matches will be played in stitch ball.",
+        "Each team can have a maximum of 16 players.",
+        "Umpires & organisers decision is final.",
+        "Further instructions will be intimated through our incharges.",
+        "Teams should bring their own kits. Balls will be provided."
+      ], 
+	  feePrizeImg: "https://i.ibb.co/HjH9Zc4/Registration-Fee.png",
+	  formLink: "https://docs.google.com/forms/d/e/1FAIpQLSc0z-ATlsSPx-ZG0wqdXiIoxov2HSuRhMDMzqOtRCVfQCXg5A/viewform?usp=header",
+      incharges: [
+        { name: "Santhosh M", phone: "9488243238" },
+        { name: "Tamizh", phone: "8778471607" }
+      ] 
+    },
+    { 
+      name: "Football (Men)", 
+      img: "https://i.ibb.co/C3Cnxr2y/Whats-App-Image-2025-08-19-at-19-25-19-1.jpg", 
+      details: [
+        "Total of 15 players allowed in a squad.",
+        "Each game consists of 2 halves of 20 Minutes each.",
+        "Knockout or League Format based on entries.",
+        "Standard FIFA rules applied.",
+        "Decision of Referee and organizing committee is final.",
+      ], 
+	  feePrizeImg: "https://i.ibb.co/S4SgBsQv/Screenshot-2025-09-06-180320.png",
+	  formLink: "https://forms.gle/KAPu4RmppANg56fj6",
+      incharges: [
+        { name: "Rishi PB", phone: "9962274641" },
+        { name: "Mokesh Kanna", phone: "9345259941" }
+      ] 
+    },
+    { 
+      name: "Futsal (Men)", 
+      img: "https://i.ibb.co/Z63qvtNR/Whats-App-Image-2025-08-19-at-19-25-02-1.jpg", 
+      details: [
+        "Total of 8 players allowed in a squad.",
+        "Each game consists of two halves of 7 minutes each.",
+        "Only 2 teams per college.",
+        "In case both teams end up scoring the same no. of goals, the winner will be decided by a penalty shootout.",
+      ], 
+	  feePrizeImg: "https://i.ibb.co/ymMmMnj9/Screenshot-2025-09-06-180701.png",
+	  formLink: "https://forms.gle/ct8R5yrGGewn8pMVA",
+      incharges: [
+        { name: "Nishanth", phone: "9150239980" },
+        { name: "Mohammed fawaz", phone: "7034600586" }
+      ] 
+    },
+    { 
+      name: "Futsal (Women)", 
+      img: "https://i.ibb.co/1YgCPBcp/Whats-App-Image-2025-08-19-at-19-25-02.jpg", 
+      details: [
+        "Total of 8 players allowed in a squad.",
+        "Each game consists of two halves of 5 minutes each.",
+        "Only 2 teams per college.",
+        "In case both teams end up scoring the same no. of goals, the winner will be decided by a penalty shootout.",
+        "FUTSAL WOMEN TEAM - BASED ON MINIMUM ENTRIES.",
+      ],
+	  feePrizeImg: "https://i.ibb.co/Txbshxgq/Screenshot-2025-09-06-180633.png",	  
+	  formLink: "https://forms.gle/v2B7Q8eJJ2ACbbNeA",	  
+      incharges: [
+        { name: "Dharanisri", phone: "8807856878" },
+        { name: "Akshaya", phone: "6379594194" }
+      ] 
+    },
+    { 
+      name: "Basketball (Men)", 
+      img: "https://i.ibb.co/CpVFzpZ8/Whats-App-Image-2025-08-19-at-19-25-03-1.jpg", 
+      details: [
+        "Each team can have maximum of 12 players.",
+        "Each game consists of 4 quarters.",
+        "Timing: each quarter 10 minutes.",
+        "Timeout: 4 timeouts for each team.",
+        "Standard FIBA rules will be followed.",
+        "Decision of Referee and organizing committee is final.",
+      ], 
+	  feePrizeImg: "https://i.ibb.co/0pDwPFDd/Screenshot-2025-09-06-180524.png",	  
+	  formLink: "https://forms.gle/dCMjLsXCq74xZC4W7",	  
+      incharges: [
+        { name: "Aadharshan", phone: "7695828998" },
+        { name: "Raghul", phone: "9123522474" }
+      ] 
+    },
+    { 
+      name: "Basketball (Women)", 
+      img: "https://i.ibb.co/N60xBNw0/Gemini-Generated-Image-nzyy4pnzyy4pnzyy.png", 
+      details: [
+        "Each team can have maximum of 12 players.",
+        "Each game consists of 4 quarters.",
+        "Timing: each quarter 8 minutes.",
+        "Timeout: 4 timeouts for each team.",
+        "Standard FIBA rules will be followed.",
+        "Decision of Referee and organizing committee is final.",
+      ], 
+	  feePrizeImg: "https://i.ibb.co/XGq6GGw/Screenshot-2025-09-06-180608.png",
+	  formLink: "https://forms.gle/S2gHFovPifduZKER8",	  	  
+      incharges: [
+        { name: "Divya", phone: "8248541344" },
+        { name: "Gopika", phone: "9363635525" }
+      ] 
+    },
+    { 
+      name: "Volleyball (Men)", 
+      img: "https://i.ibb.co/wN58cjXt/Whats-App-Image-2025-08-25-at-17-11-28.jpg", 
+      details: [
+        "Total of 12 players allowed in a squad.",
+        "Playing 6 & sub 6.",
+        "Knockout Format.",
+        "Balls will not be given for warm-up shots.",
+        "Each match will have 3 sets of 25 each.",
+        "Decision of Referee and organizing committee is final.",
+        "All Standard FIVB rules apply.",
+      ], 
+	  feePrizeImg: "https://i.ibb.co/XGq6GGw/Screenshot-2025-09-06-180608.png",
+	  formLink: "https://forms.gle/us1cRXaAFVTqbwfV6",	  
+      incharges: [
+        { name: "Sabari", phone: "8754739725" },
+        { name: "Sri ram", phone: "7094228641" },
+      ] 
+    },
+	{ 
+      name: "Volleyball (Women)", 
+      img: "https://i.ibb.co/qYzQsx5R/Whats-App-Image-2025-08-25-at-17-03-04.jpg", 
+      details: [
+        "Total of 12 players allowed in a squad.",
+        "Playing 6 & sub 6.",
+        "Knockout Format.",
+        "Balls will not be given for warm-up shots.",
+        "Each match will have 3 sets of 25 each.",
+        "Decision of Referee and organizing committee is final.",
+        "All Standard FIVB rules apply.",
+      ], 
+	  feePrizeImg: "https://i.ibb.co/M59Pg5d5/Screenshot-2025-09-06-180850.png",
+	  formLink: "https://forms.gle/5T3RAqQ776vLBFpf8",	  	  
+      incharges: [
+        { name: "Swetha", phone: "8148438302" },
+        { name: "Monikha", phone: "7397305588" }
+      ] 
+    },
+    { 
+      name: "Throwball (Women)", 
+      img: "https://i.ibb.co/hJt3MMC3/Whats-App-Image-2025-08-23-at-15-47-10.jpg", 
+      details: [
+        "Only for women.",
+        "Total of 12 players allowed in a squad with 9 on field.",
+        "Each game consists of 3 sets of 25 points each.",
+        "Only 1 team per college.",
+        "Referee decision is considered final.",
+        "Standard ITF rules apply.",
+        "FORMAT : Knockout/league (depending on the number of registrations).",
+      ], 
+	  feePrizeImg: "https://i.ibb.co/0pDwPFDd/Screenshot-2025-09-06-180524.png",	  
+	  formLink: "https://forms.gle/4ssLEanuCX1WoVWX7",	  	  	  
+      incharges: [
+        { name: "Sivambiga", phone: "9597574505" },
+        { name: "Elamathi", phone: "8148804866" }
+      ] 
+    },
+  ],
+  indoor: [
+  { 
+    name: "Badminton (Men)", 
+    img: "https://i.postimg.cc/289mgWr0/Gemini-Generated-Image-a93vnqa93vnqa93v.png", 
+    details: [
+      "4 teams per college.",
+      "Team event : singles, doubles, Reverse singles.",
+      "Point system :21 pts.",
+      "Shuttle used : YONEX mavis 350.",
+      "Non marking shoes are mandatory.",
+      "Decision of Referee and organizing committee is final."
+    ], 
+    feePrizeImg: "https://i.ibb.co/wqRXCF4/Registration-Fee-2.png",
+    formLink: "https://forms.gle/AxKgPXW3HNSW7MB67",
+    incharges: [
+      { name: "Madhar Sha", phone: "9367518087" },
+      { name: "Mushraf PT", phone: "9497186321" }
+    ] 
+  },
+  { 
+    name: "Badminton (Women)", 
+    img: "https://i.ibb.co/ycC1Lmfp/Whats-App-Image-2025-09-01-at-01-03-38.jpg", 
+    details: [
+      "4 teams per college.",
+      "Team event : singles, doubles, Reverse singles.",
+      "Point system :21 pts.",
+      "Shuttle used : YONEX mavis 350.",
+      "Non marking shoes are mandatory.",
+      "Decision of Referee and organizing committee is final."
+    ], 
+    feePrizeImg: "https://i.ibb.co/wqRXCF4/Registration-Fee-2.png",
+    formLink: "https://forms.gle/Qf6rgqTrmSyjAKa38",
+    incharges: [
+      { name: "Prathiba", phone: "6382766480" },
+      { name: "Nandhini", phone: "6383826473" }
+    ] 
+  },
+  { 
+    name: "Chess (Open)", 
+    img: "https://i.ibb.co/zTGMT4Qr/Whats-App-Image-2025-08-22-at-12-55-22.jpg", 
+    details: [
+	  "Open category - both boys and girls",
+      "REGULAR:",
+      "Format-Swiss system.",
+      "Individual participation.",
+      "College ID-Necessary.",
+      "Each player will be allotted 10 min and 5 sec increment.",
+      "10 mins break after each round.",
+      "Player cannot change their board numbers.",
+      "3 illegal moves end the game.",
+      "Use of mobiles or electronic devices prohibited during the game.",
+      "Tie breaker - Tie breaker match.",
+      "Final decision will be taken by the Arbiter.",
+      "BLITZ:",
+      "Format-Swiss system.",
+      "Each player will be allotted 3 minutes and 2 sec increment."
+    ], 
+    feePrizeImg: "https://i.ibb.co/KpcmCb57/Registration-Fee-1.png",
+    formLink: "https://forms.gle/bY6djSqfjD3GaEQf6",
+    incharges: [
+      { name: "Nishanth", phone: "9150239980" },
+      { name: "Mahesh Krishna", phone: "8939245664" },
+      { name: "Branitha", phone: "9942675849" },
+      { name: "Thanakayathire", phone: "9360606590" }
+    ] 
+  },
+  { 
+    name: "Carrom (Men)", 
+    img: "https://i.ibb.co/nNhqcPSG/Gemini-Generated-Image-z2evtoz2evtoz2ev.png", 
+    details: [
+      "Both men and women.",
+      "All International rules will be applied.",
+      "Tournament will be conducted in knock out format.",
+      "No mixed teams allowed.",
+      "Players are advised to bring their own strikers.",
+      "Thumbing and scissoring allowed.",
+      "Final decision will be taken by the referee/conducting incharges.",
+      "Based on minimum number of entries.",
+    ], 
+    feePrizeImg: "https://i.ibb.co/KpcmCb57/Registration-Fee-1.png",
+    formLink: "https://forms.gle/RcqH2gYSy8nLjBNv6",
+    incharges: [
+      { name: "Dharani Venkat", phone: "9578141471" },
+      { name: "Wajith", phone: "8807745090" }
+    ] 
+  },
+  { 
+    name: "Carrom (Women)", 
+    img: "https://i.ibb.co/SDxXmHBm/Whats-App-Image-2025-09-01-at-01-01-58.jpg", 
+    details: [
+      "Both men and women.",
+      "All International rules will be applied.",
+      "Tournament will be conducted in knock out format.",
+      "No mixed teams allowed.",
+      "Players are advised to bring their own strikers.",
+      "Thumbing and scissoring allowed.",
+      "Final decision will be taken by the referee/conducting incharges.",
+      "Based on minimum number of entries.",
+    ], 
+    feePrizeImg: "https://i.ibb.co/KpcmCb57/Registration-Fee-1.png",
+    formLink: "https://forms.gle/83xroidG681V3Rd89",
+    incharges: [
+      { name: "Kavinharathi", phone: "8056898536" },
+      { name: "Pavithra", phone: "7358589646" }	  
+    ] 
+  }
+],
+  athletics: [
+    { 
+      name: "Men", 
+      img: "https://i.postimg.cc/jd2Y6jPP/Gemini-Generated-Image-1k0kkg1k0kkg1k0k.png", 
+      details: [
+        "Unlimited entries per college per event.",
+		"Event will onlly be conducted only if there is a minimum of 8 participants",
+        "One can participate in maximum of 3 events.",
+        "It can be either : Three track events OR Two track + one field events OR One track + Two field events OR Three field events.",
+        "Events: 100m, 200m, 400m, 1500m, 4x100m relay, Shot put, Long jump."
+      ], 
+	feePrizeImg: "https://i.ibb.co/twKH9g4D/Screenshot-2025-09-06-182548.png",
+    formLink: "https://forms.gle/83xroidG681V3Rd89",
+    incharges: [
+        { name: "Selva", phone: "8637653273" },
+        { name: "Bhaskar", phone: "8248939990" },
+      ] 
+    },
+    { 
+      name: "Women", 
+      img: "https://i.postimg.cc/9Fk5LjYS/Gemini-Generated-Image-ux4cd9ux4cd9ux4c.png", 
+      details: [
+        "Unlimited entries per college per event",
+		"Event will onlly be conducted only if there is a minimum of 8 participants",
+        "One can participate in maximum of 3 events.",
+        "It can be either : Three track events OR Two track + one field events OR One track + Two field events OR Three field events.",
+        "Events: 100m, 200m, 400m, 1500m, 4x100m relay, Shot put, Long jump."
+      ], 
+	feePrizeImg: "https://i.ibb.co/twKH9g4D/Screenshot-2025-09-06-182548.png",
+    formLink: "https://forms.gle/83xroidG681V3Rd89",	  
+    incharges: [
+        { name: "Monikha", phone: "7397305588" },
+        { name: "Dhivya", phone: "9344044202" }	
+      ] 
+    }
+  ]
+};
+
+
+function showCategory(category) {
+  document.getElementById('categoryPage').style.display = 'none';
+  const mainPage = document.getElementById('mainPage');
+  const eventGrid = document.getElementById('eventGrid');
+  eventGrid.innerHTML = '';
+  mainPage.style.display = 'block';
+  document.getElementById('detailsPage').classList.remove('show');
+
+  const arr = eventsData[category] || [];
+  arr.forEach((ev, idx) => {
+    const card = document.createElement('div');
+    card.className = 'event-card-large';
+    card.innerHTML = `
+      <div class="event-image" style="background-image:url('${ev.img}');"></div>
+      <div class="event-info">
+        <h3 class="event-title">${escapeHtml(ev.name)}</h3>
+        <button class="btn" onclick="showDetails('${category}', ${idx})">Details</button>
+      </div>
+    `;
+    eventGrid.appendChild(card);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showDetails(category, index) {
+  const ev = (eventsData[category] && eventsData[category][index]) ? eventsData[category][index] : null;
+  if (!ev) return;
+
+  document.getElementById('mainPage').style.display = 'none';
+  const dp = document.getElementById('detailsPage');
+
+  let detailsList = '';
+  if (ev.details && ev.details.length) {
+    detailsList = `
+    <ul style="list-style: disc; text-align:left; max-width:500px; margin:0 auto;">
+      ${ev.details.map(d => `<li>${escapeHtml(d)}</li>`).join('')}
+    </ul>
+    `;
+  }
+
+let feePrize = '';
+if (ev.feePrizeImg) {
+  feePrize = `
+    <div class="fee-prize">
+      <img src="${ev.feePrizeImg}" 
+           alt="Fee and Prize Details" 
+           class="fee-prize-img">
+    </div>`;
+}
+
+  const inchargeCards = ev.incharges.map(ic => `
+    <div class="incharge-card">
+      <h4>${escapeHtml(ic.name)}</h4>
+      <div class="contact-buttons">
+        <a href="tel:${ic.phone}" class="btn">📞 Call</a>
+        <a href="https://wa.me/91${ic.phone}" target="_blank" class="btn">💬 WhatsApp</a>
+      </div>
+    </div>
+  `).join('');
+
+  dp.innerHTML = `
+    <h1 class="page-title shimmer">${escapeHtml(ev.name)}</h1>
+    ${detailsList}
+    ${feePrize}
+	<div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+      <button class="btn" onclick="window.open('${ev.formLink}','_blank')">Register Now</button>
+      <button class="btn" onclick="backToEvents()">⬅ Back to Events</button>
+    </div>
+    <h3>Event Incharges</h3>
+    <div class="incharges-grid">${inchargeCards}</div>
+
+  `;
+  dp.classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function backToCategories() {
+  document.getElementById('mainPage').style.display = 'none';
+  document.getElementById('categoryPage').style.display = 'grid';
+}
+
+function backToEvents() {
+  document.getElementById('detailsPage').classList.remove('show');
+  document.getElementById('mainPage').style.display = 'block';
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+const mobileMenu = document.getElementById("mobile-menu");
+const navLinks = document.querySelector(".nav-links");
+
+mobileMenu.addEventListener("click", () => {
+  const expanded = mobileMenu.getAttribute("aria-expanded") === "true" || false;
+  mobileMenu.setAttribute("aria-expanded", !expanded);
+  navLinks.classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    mobileMenu.setAttribute("aria-expanded", false);
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,840 @@
+/* ===========================
+   Synapse ’25 — Global Styles
+   =========================== */
+:root{
+  --bg:#000;
+  --fg:beige;
+  --gold:#c0a060;
+  --gold-bright:#ffcc66;
+  --gold-deep:#cc9933;
+}
+
+*{box-sizing:border-box}
+
+html
+body{
+  background:var(--bg);
+  margin:0;
+  font-family:'Cormorant Garamond', serif;
+  color:var(--fg);
+  line-height:1.6;
+  scroll-padding-top:80px; /* equals navbar height */
+}
+
+/* Anchor offset so headings aren’t hidden under fixed nav */
+:target{scroll-margin-top:90px}
+
+/* ===========================
+   Navbar (Unified)
+   =========================== */
+.navbar{
+  background:rgba(0,0,0,0.85);
+  padding:.8rem 1rem;
+  position:fixed; top:0; left:0; right:0;
+  z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.6);
+}
+
+.nav-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  max-width:1200px;
+  margin:0 auto;
+  position:relative;
+}
+
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:2rem;
+  margin:0; padding:0;
+}
+
+.nav-links li{display:inline}
+.nav-links a{
+  color:var(--fg);
+  text-decoration:none;
+  font-size:1.1rem;
+  transition:color .3s ease;
+}
+.nav-links a:hover,
+.nav-links a.active-link{color:var(--gold-bright)}
+
+.nav-toggle{
+  display:none;
+  font-size:2rem;
+  color:var(--gold-bright);
+  cursor:pointer;
+  position:absolute;
+  left:-1rem;
+  background: none;  
+}
+
+/* Mobile Nav */
+@media (max-width:768px){
+  .nav-links{
+    flex-direction:column;
+    position:fixed;
+    top:60px; left:0; width:100%;
+    background:rgba(0,0,0,0.95);
+    text-align:center;
+    max-height:0; overflow:hidden;
+    transition:max-height .4s ease;
+  }
+  .nav-links.active{
+    max-height:80vh; overflow-y:auto;
+    animation:fadeIn .4s ease forwards;
+  }
+  .nav-links a{
+    display:block; padding:1rem 0;
+    opacity:0; transform:translateY(10px);
+    transition:all .3s ease;
+  }
+  .nav-links.active a{
+    opacity:1; transform:translateY(0);
+  }
+  .nav-toggle{display:block}
+}
+
+@keyframes fadeIn{from{opacity:0} to{opacity:1}}
+
+/* ===========================
+   Hero / Stage (if used)
+   =========================== */
+.stage{
+  display:flex; justify-content:center; align-items:center;
+  gap:2rem; padding:8rem 2rem 2rem; min-height:100vh;
+}
+.side-img{width:300px; height:auto; object-fit:contain}
+@media (max-width: 768px) {
+  .stage {
+    padding: 4rem 1rem 1rem; /* reduce top padding */
+  }
+  .side-img {
+    margin-top: -2rem; /* pull logo slightly up */
+  }
+}
+
+
+.card{
+  background:rgba(0,0,0,0.85);
+  padding:3rem 4rem; text-align:center;
+  border:4px solid transparent; border-radius:15px;
+  background-clip:padding-box, border-box;
+  background-origin:border-box;
+  background-image:linear-gradient(#000,#000),
+    linear-gradient(45deg, var(--fg), var(--gold), var(--fg));
+}
+@media (max-width: 768px) {
+  .stage .card {
+    width: 90%;         /* expand card */
+    max-width: 500px;   /* allow more space */
+    padding: 2rem 1.5rem; /* reduce cramped look */
+  }
+}
+
+/* Main Event Title */
+.event-name {
+  font-size: clamp(2rem, 6vw, 3.5rem);  /* biggest */
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+/* College name */
+.college {
+  font-size: 2.5rem;                  /* bigger font */
+  font-weight: 1000;                   /* bold */
+  background: linear-gradient(90deg, 
+              var(--gold-bright), 
+              #fff8d2, 
+              var(--gold-bright));
+  background-size: 200% auto;         /* for shimmer movement */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+  text-align: center;                 /* keep it centered */
+  margin-bottom: 0.5rem;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Organiser */
+.organiser {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+/* "Proudly Presents" */
+.present {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.8rem;
+}
+
+/* Description text */
+.desc {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* Event dates (button style) */
+.dates {
+  display: inline-block;
+  border: 1px solid var(--fg);
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.dates:hover {
+  background: var(--gold);
+  color: #000;
+}
+
+/* ===========================
+   Buttons (unified)
+   =========================== */
+.btn,.cta-btn{
+  display:inline-block; margin-top:1.2rem; padding:.8rem 1.5rem;
+  background:linear-gradient(45deg, var(--gold-bright), var(--gold-deep));
+  color:#000; border-radius:30px; font-weight:700;
+  text-decoration:none; transition:all .3s ease; border:none; cursor:pointer;
+}
+.btn:hover,.cta-btn:hover{
+  background:linear-gradient(45deg, #ffe699, #d4a241);
+  transform:scale(1.05);
+}
+
+/* ===========================
+   Shimmer Headings
+   =========================== */
+.shimmer{
+  background:linear-gradient(90deg, var(--fg), #fff, var(--fg));
+  background-size:200% auto; color:transparent;
+  background-clip:text; -webkit-background-clip:text;
+  animation:shimmer 3s linear infinite;
+}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:0% center}}
+
+/* ===========================
+   Section Utilities
+   =========================== */
+.page-title{font-size:clamp(2rem,5vw,3.5rem); margin-bottom:.5rem}
+.page-subtitle{font-size:1.2rem; color:var(--gold); margin-bottom:2rem}
+.small-center{text-align:center; margin:20px 0}
+
+/* ✅ Mobile View */
+@media (max-width: 768px) {
+  .stage {
+    display: flex;
+    flex-direction: column;  /* stack items vertically */
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .stage .side-img.left {
+    display: block;   /* show left image */
+    max-width: 200px; /* scale down for mobile */
+    margin-bottom: 1rem;
+  }
+
+  .stage .card {
+    order: 2;  /* ensure card comes after image */
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .stage .side-img.right {
+    display: none;  /* hide right image on mobile */
+  }
+}
+
+/* ===========================
+   Sponsors (de-duplicated)
+   =========================== */
+.sponsors-page{
+  padding:8rem 2rem 2rem; text-align:center;
+}
+.sponsors-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+  gap:2rem; max-width:1000px; margin:0 auto;
+}
+.sponsor-card{
+  background:rgba(0,0,0,0.85);
+  padding:1rem; border-radius:10px; border:1px solid var(--gold);
+  transition:transform .3s ease;
+}
+.sponsor-card:hover{transform:scale(1.05)}
+.sponsor-card a{text-decoration:none; color:inherit; display:block}
+.sponsor-card a:hover .sponsor-name{color:var(--gold-bright)}
+.sponsor-card img{max-width:100%; height:auto; display:block; margin:0 auto .5rem}
+.sponsor-name{font-size:1rem; margin:0}
+
+/* ===========================
+   About GVMC
+   =========================== */
+.about-gvmc{padding:8rem 2rem 2rem; background:#111; color:var(--fg)}
+.about-container{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px; margin:40px auto; max-width:1100px;
+}
+.about-text,.about-image{flex:1}
+.about-text{flex:1 1 500px}
+.about-text p{margin-bottom:1rem; font-size:1.1rem}
+.about-image{flex:1 1 400px; text-align:center}
+.about-image img{
+  max-width:100%; border-radius:12px; border:2px solid #000;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.about-image img:hover{
+  transform:scale(1.03); box-shadow:0 0 15px rgba(192,160,96,.7);
+}
+@media (max-width:768px){
+  .about-container{flex-direction:column; text-align:center}
+}
+
+/* ===========================
+   About Synapse
+   =========================== */
+.about-synapse{padding:8rem 2rem 2rem; background:#111; color:var(--fg)}
+.about-container-synapse{
+  display:flex; flex-wrap:wrap; align-items:center; gap:2rem;
+  max-width:1200px; margin:0 auto;
+}
+.about-synapse-text{flex:1 1 500px}
+.about-synapse-text p{margin-bottom:1rem; font-size:1.1rem}
+.about-synapse-image{flex:1 1 400px; text-align:center}
+.about-synapse-image img{
+  max-width:60%; height:auto; border-radius:12px; border:none;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.about-synapse-image img:hover{
+  transform:scale(1.03); box-shadow:0 0 15px rgba(192,160,96,.7);
+}
+@media (max-width:768px){
+  .about-container-synapse{flex-direction:column; text-align:center}
+}
+
+/* ===========================
+   General Instructions
+   =========================== */
+.general-instructions{padding:8rem 2rem 2rem; background:#111; color:var(--fg)}
+.instructions-container{max-width:900px; margin:0 auto}
+.instructions-list{list-style:none; padding:0; margin:2rem 0 0}
+.instructions-list li{
+  background:rgba(0,0,0,0.7); border-left:4px solid var(--gold);
+  padding:1rem; margin-bottom:1rem; border-radius:5px; font-size:1.1rem;
+  transition:background .3s ease;
+}
+.instructions-list li:hover{background:rgba(192,160,96,0.1)}
+
+/* ===========================
+   Gallery
+   =========================== */
+.our-gallery{
+  padding:8rem 2rem 2rem; background:#111; color:var(--fg); text-align:center;
+}
+.gallery-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:1rem; max-width:1200px; margin:0 auto;
+}
+.gallery-grid img{
+  width:100%; aspect-ratio: 1280 / 853; border-radius:8px; border:2px solid var(--gold);
+  object-fit:cover; transition:transform .3s ease, box-shadow .3s ease;
+}
+.gallery-grid img:hover{
+  transform:scale(1.03); box-shadow:0 0 15px rgba(192,160,96,.5);
+}
+
+/* ===========================
+   Guests
+   =========================== */
+.our-guests{
+  padding:8rem 2rem 2rem; background:#111; color:var(--fg); text-align:center;
+}
+.guests-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:2rem; max-width:1100px; margin:0 auto;
+}
+.guest-card{
+  background:rgba(0,0,0,0.85);
+  border:1px solid var(--gold); border-radius:10px; padding:1.5rem;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.guest-card:hover{transform:translateY(-5px); box-shadow:0 0 15px rgba(192,160,96,.5)}
+.guest-card img{
+  width:100%; height:auto; border-radius:50%; border:3px solid var(--gold); margin-bottom:1rem;
+}
+.guest-name{font-size:1.2rem; margin:.5rem 0 .2rem}
+.guest-role{font-size:1rem; color:var(--gold); margin:0}
+
+/* ===========================
+   Events (Categories & Cards)
+   =========================== */
+.our-events{
+  padding:8rem 2rem 2rem; background:#111; color:var(--fg); text-align:center;
+}
+.events-grid-large{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:2rem; max-width:1100px; margin:0 auto;
+}
+.event-card-large{
+  display:flex; flex-direction:column;
+  background:rgba(0,0,0,0.85); border-radius:20px; overflow:hidden;
+  color:inherit; box-shadow:0 0 15px rgba(0,0,0,.4);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.event-card-large:hover{transform:translateY(-5px); box-shadow:0 0 20px rgba(192,160,96,.6)}
+.event-image{
+  width:100%; height:200px; background-size:cover; background-position:center;
+  border-radius:12px;
+}
+.event-info{
+  padding:1.2rem;
+  background:linear-gradient(to top, rgba(0,0,0,.8), transparent);
+}
+.event-title{font-size:1.5rem; margin:0; font-weight:700; color:var(--fg)}
+.event-subtitle{font-size:1rem; color:var(--gold); margin-top:.3rem}
+
+/* Keyboard focus for cards */
+.event-card-large:focus-within,
+.event-card-large:focus{
+  outline:3px solid rgba(255,204,102,0.18); outline-offset:4px;
+}
+
+/* ===========================
+   Details Page (FIXED)
+   =========================== */
+.details-container{
+  display:none; /* hidden until .show */
+  padding:2.5rem 1.5rem; max-width:980px; margin:2rem auto;
+  background:rgba(0,0,0,0.85); border-radius:12px; border:1px solid var(--gold);
+  color:var(--fg);
+  opacity:0; transform:translateY(6px);
+  transition:opacity .28s ease, transform .28s ease;
+}
+.details-container.show{
+  display:block; opacity:1; transform:translateY(0);
+}
+.details-container h1,.details-container h2{margin-top:0}
+.details-container ul{margin:1rem 0; padding-left:1.25rem}
+.details-container p{margin:.5rem 0 1rem}
+
+/* Mobile adjustments for details */
+@media (max-width:520px){
+  .details-container{padding:1.5rem}
+  .details-container .cta-btn{width:100%; display:block}
+}
+
+/* ===========================
+   Advisors
+   =========================== */
+.advisors{
+  padding:8rem 2rem 2rem; background:#111; color:var(--fg); text-align:center;
+}
+.advisors-list{max-width:800px; margin:0 auto}
+.advisors h3{margin-top:20px; font-weight:700; color:var(--gold)}
+.advisors p{margin:5px 0; font-size:1rem}
+
+/* ===========================
+   Other Sponsors
+   =========================== */
+.other-sponsors{
+  padding:8rem 2rem 2rem; background:#111; color:var(--fg); text-align:center;
+}
+.other-sponsors .sponsors-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+  gap:2rem; max-width:1000px; margin:0 auto;
+}
+.other-sponsors .sponsor-card{
+  background:rgba(0,0,0,0.85); padding:1rem; border-radius:10px;
+  border:1px solid var(--gold);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.other-sponsors .sponsor-card:hover{
+  transform:scale(1.05); box-shadow:0 0 15px rgba(192,160,96,.5);
+}
+.other-sponsors .sponsor-card img{
+  max-width:100%; height:auto; display:block; margin:0 auto;
+}
+
+/* ===========================
+   Contact
+   =========================== */
+.contact-us{
+  padding:8rem 2rem 2rem; background:#111; color:var(--fg); text-align:center;
+}
+.contact-container{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:2rem; max-width:1000px; margin:2rem auto 0;
+}
+.contact-card{
+  background:rgba(0,0,0,0.85); border:1px solid var(--gold);
+  border-radius:10px; padding:1.5rem;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.contact-card:hover{transform:translateY(-5px); box-shadow:0 0 15px rgba(192,160,96,.5)}
+.contact-name{font-size:1.2rem; margin:0}
+.contact-role{font-size:1rem; color:var(--gold); margin:.3rem 0 1rem}
+.contact-whatsapp{display:inline-block; color:#25D366; text-decoration:none; font-weight:700}
+.contact-whatsapp:hover{text-decoration:underline}
+/* --- Tamil Mandram Page Styles --- */
+.tamil-wrapper {
+  max-width: 900px;
+  margin: auto;
+  padding: 7rem 2rem 2rem;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  background: rgba(0,0,0,0.45);
+  border-radius: 12px;
+}
+
+.tamil-wrapper h1,
+.tamil-wrapper h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.tamil-wrapper h2 {
+  margin-top: 2rem;
+  color: #ffd27f;
+  border-bottom: 1px solid #ffd27f;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.tamil-quote {
+  font-style: italic;
+  color: #ffd27f;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+/* Event list style */
+.event-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.event-list li {
+  margin-bottom: 0.6rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.event-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #ffd27f;
+}
+
+/* Glowing Title */
+.amizhdhu-title {
+  color: #ffd27f;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  animation: goldGlow 2s ease-in-out infinite alternate;
+  text-align: center;
+}
+
+@keyframes goldGlow {
+  from {
+    text-shadow: 0 0 5px #ffd27f, 0 0 10px #ffb84d, 0 0 15px #ff9900;
+  }
+  to {
+    text-shadow: 0 0 10px #ffe5b4, 0 0 20px #ffcc66, 0 0 25px #ff9900;
+  }
+}
+
+/* Tamil Mandram Shimmer Effect */
+.tamil-shimmer {
+  background: linear-gradient(to right, var(--gold) 20%, #fff 50%, var(--gold) 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: tamilShimmer 2s linear infinite;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+@keyframes tamilShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Centered bold helpers */
+.center-bold {
+  text-align: center;
+  font-weight: bold;
+}
+
+.center-bold-lg {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 0.3rem;
+}
+
+/* Tamil Mandram Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 2rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ffd27f;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ffcc66;
+}
+
+@media (max-width: 768px) {
+  .event-name { font-size: 2rem; }
+  .college { font-size: 1rem; }
+  .organiser { font-size: 1.1rem; }
+  .present { font-size: 0.9rem; }
+  .desc { font-size: 1rem; }
+  .dates { font-size: 0.9rem; padding: 0.4rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  .event-name { font-size: 1.6rem; }
+  .college { font-size: 0.9rem; }
+  .organiser { font-size: 1rem; }
+  .present { font-size: 0.85rem; }
+  .desc { font-size: 0.9rem; }
+  .dates { font-size: 0.85rem; padding: 0.4rem 0.9rem; }
+}
+/* ===========================
+   Accommodation Section
+   =========================== */
+.accommodation {
+  padding: 8rem 2rem 2rem;
+  background: #111;         /* matches About/Contact/Events sections */
+  color: var(--fg);
+  text-align: center;
+}
+
+.accommodation-container {
+  max-width: 1100px;
+  margin: 2rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.accommodation-card {
+  background: rgba(0,0,0,0.85);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.accommodation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(192,160,96,.5); /* same gold glow as other cards */
+}
+
+.acc-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 .3rem;
+}
+
+.acc-role {
+  font-size: 1rem;
+  color: var(--gold);
+  margin: 0 0 1rem;
+}
+
+/* WhatsApp / Call / Link buttons */
+.acc-whatsapp,
+.acc-call,
+.acc-link {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  padding: .4rem .8rem;
+  border-radius: 8px;
+  margin: .3rem 0.3rem 0 0;
+  font-size: .95rem;
+  transition: all .25s ease;
+}
+
+/* WhatsApp (green accent like Contact Us) */
+.acc-whatsapp {
+  color: #25D366;
+}
+.acc-whatsapp:hover {
+  text-decoration: underline;
+}
+
+/* Neutral buttons (call/location) */
+.acc-call,
+.acc-link {
+  color: var(--fg);
+  border: 1px solid var(--gold);
+}
+.acc-call:hover,
+.acc-link:hover {
+  background: var(--gold);
+  color: #000;
+}
+/* ============================
+   Incharge Card Styling
+   ============================ */
+.incharges-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.incharge-card {
+  background: #000; /* matches theme background */
+  border: 2px solid var(--gold); /* gold border */
+  border-radius: 16px; /* rounded corners */
+  padding: 16px;
+  min-width: 160px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(192, 160, 96, 0.3); /* soft gold shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.incharge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(255, 204, 102, 0.45); /* brighter on hover */
+}
+
+.incharge-card h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: var(--gold-bright); /* golden title */
+  font-weight: bold;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-buttons .btn {
+  background: var(--gold-deep);
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.contact-buttons .btn:hover {
+  background: var(--gold-bright);
+  transform: scale(1.05);
+}
+/* ===========================
+   Student Council (Cards)
+   =========================== */
+.student-council {
+  padding: 8rem 2rem 2rem;
+  background: #111;
+  color: var(--fg);
+  text-align: center;
+}
+
+.council-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 2rem auto 0;
+}
+
+.council-card {
+  background: rgba(0,0,0,0.85);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.council-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(192,160,96,.5);
+}
+
+.council-role {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: .8rem;
+  color: var(--gold-bright);
+}
+
+.council-name {
+  margin: .3rem 0;
+  font-size: 1rem;
+}
+#advisors ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+html {
+  scroll-padding-top: 100px; /* desktop navbar height */
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 70px; /* mobile navbar height */
+  }
+}
+
+.fee-prize {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.fee-prize-img {
+  max-width: 240px;   /* keep smaller on desktop */
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+.guest-instagram {
+  display: block;
+  margin-top: 0.3rem;
+  color: #fff;              /* White */
+  font-size: 0.9rem;
+  text-decoration: none;    /* Removes underline */
+  transition: color 0.3s;
+}
+
+.guest-instagram:hover {
+  color: #e1306c;           /* Instagram pinkish hover color */
+}
+
+

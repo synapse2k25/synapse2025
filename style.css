@@ -856,4 +856,16 @@ html {
     max-width: 120px; /* mobile size */
   }
 }
+/* Mobile fix for Tamil Mandram logo */
+@media (max-width: 768px) {
+  .logo-wrapper {
+    margin-top: 5rem;   /* enough space below navbar */
+    margin-bottom: 0.5rem; /* smaller gap below logo */
+  }
+
+  .logo-main {
+    max-width: 90px;   /* smaller logo for mobile */
+    height: auto;
+  }
+}
 

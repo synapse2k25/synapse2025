@@ -489,7 +489,7 @@ body{
 .tamil-wrapper {
   max-width: 900px;
   margin: auto;
-  padding: 7rem 2rem 2rem;
+  padding: 1rem 2rem 2rem;
   line-height: 1.8;
   font-size: 1.1rem;
   background: rgba(0,0,0,0.45);
@@ -837,4 +837,23 @@ html {
   color: #e1306c;           /* Instagram pinkish hover color */
 }
 
+/* ===========================
+   Logo Styling
+   =========================== */
+.logo-wrapper {
+  text-align: center;
+  margin-top: 6rem;   /* keeps it below navbar */
+  margin-bottom: 1rem;
+}
+
+.logo-main {
+  max-width: 180px;   /* desktop size */
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .logo-main {
+    max-width: 120px; /* mobile size */
+  }
+}
 
